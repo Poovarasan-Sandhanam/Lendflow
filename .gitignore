@@ -12,3 +12,11 @@ captures/
 *.jks
 *.keystore
 keystore.properties
+# Built artifacts, release output and debugging dumps.
+*.apk
+*.aab
+*.ap_
+/app/release/
+*.hprof
+*.log
+.navigation/
