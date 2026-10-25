@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark window theme: avoids a white flash before Compose draws and keeps status bar icons light. -->
+    <style name="Theme.LendFlow" parent="android:Theme.Material.NoActionBar" />
+</resources>
