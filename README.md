@@ -54,12 +54,36 @@ A single `:app` Gradle module, organised by package (see [ADR 0001](docs/ADR/000
 app/src/main/java/com/lendflow/
 ├── LendFlowApplication.kt
 ├── MainActivity.kt
-├── navigation/            # NavKeys + NavDisplay (Navigation 3)
-├── core/designsystem/     # theme, colors, typography, spacing
+├── navigation/            # NavKeys, NavDisplay (Navigation 3), bottom-bar MainShell
+├── core/
+│   ├── designsystem/      # theme (ink/indigo/mint palette), shared components
+│   ├── model/             # UI models + repayment formula
+│   ├── data/              # SampleData: synthetic data until Phase 2
+│   └── ui/                # money and date formatting
 └── feature/
-    ├── dashboard/         # placeholder until Phase 2
-    └── calculator/        # placeholder until Phase 1
+    ├── onboarding/        # welcome carousel, passcode sign-in
+    ├── dashboard/         # Home tab
+    ├── loans/             # Loans tab + loan detail
+    ├── activity/          # Activity tab (transactions)
+    ├── account/           # Account tab (profile, settings, sign out)
+    ├── calculator/        # loan calculator
+    ├── apply/             # 3-step application + decision
+    ├── payment/           # make a payment / overpay
+    └── notifications/
 ```
+
+### Navigation map
+
+```text
+Welcome ─▶ Sign in (passcode) ─▶ Main shell  [Home | Loans | Activity | Account]
+                                   ├─▶ Loan detail ─▶ Make a payment
+                                   ├─▶ Calculator ─▶ Apply (purpose → about you → review → decision)
+                                   ├─▶ Make a payment
+                                   └─▶ Notifications
+```
+
+Signing in and signing out replace the whole back stack. Tabs switch in place inside the shell;
+Back from any tab other than Home returns to Home first.
 
 `domain/`, `core/network`, `core/database`, `sync/` and the other packages are added when the phase
 that needs them begins, not before.
